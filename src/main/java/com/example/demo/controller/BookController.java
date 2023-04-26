@@ -5,9 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -41,7 +41,7 @@ public class BookController {
     @GetMapping("/book")
     private List<Book> getBooks(){
         logger.info("there are "+bookHashMap.size() + " number of books");
-        return bookHashMap.values().stream().collect(Collectors.toList());
+        return new ArrayList<>(bookHashMap.values());
     }
 
     @PutMapping("/book")
@@ -69,8 +69,4 @@ public class BookController {
         }
         return bookHashMap.get(bookId);
     }
-
-
-
-
 }
